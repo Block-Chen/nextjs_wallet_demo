@@ -4,9 +4,11 @@ import { NextResponse, NextRequest } from 'next/server';
 export async function GET(request : NextRequest) {
     const { searchParams } = new URL(request.url)
     const api_token = process.env.NEXT_PUBLIC_BLOCKSDK_TOKEN
+    const url = process.env.NEXT_PUBLIC_URL
+    const net = process.env.NEXT_PUBLIC_NET
     const address = searchParams.get('address')
 
-    const res = await fetch(`https://testnet-api.blocksdk.com/v3/eth/token/` + address +`/all-balance?api_token=` + api_token, {
+    const res = await fetch(url + net + `/token/` + address +`/all-balance?api_token=` + api_token, {
         headers: {
             'Content-Type': 'application/json',
         },
@@ -22,7 +24,8 @@ export async function GET(request : NextRequest) {
 export async function POST(request : NextRequest) {
     const { searchParams } = new URL(request.url)
     const api_token = process.env.NEXT_PUBLIC_BLOCKSDK_TOKEN
-
+    const url = process.env.NEXT_PUBLIC_URL
+    const net = process.env.NEXT_PUBLIC_NET
     const payload = await request.json()
     const contract = payload.get('contract')
     const from = payload.get('from')
@@ -30,7 +33,7 @@ export async function POST(request : NextRequest) {
     const to = payload.get('to')
     const amount = payload.get('amount')
 
-    const res = await fetch(`https://testnet-api.blocksdk.com/v3/eth/token/`+ contract + from +`/transfer?api_token=` + api_token, {
+    const res = await fetch(url + net + `/token/`+ contract + from +`/transfer?api_token=` + api_token, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

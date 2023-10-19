@@ -27,7 +27,15 @@
 │   ├── send
 │   └── page.tsx
 └── page.tsx
-``` 
+```
+
+### 4. env 파일 설정
+````
+NEXT_PUBLIC_BLOCKSDK_TOKEN     // blocksdk api 토큰
+NEXT_PUBLIC_URL                // 테스트넷 or 메인넷
+NEXT_PUBLIC_NET                // 사용할 메인넷(eth,bsc,klay,matic)                        
+
+````
 
 ### 라이센스
 ````

@@ -4,11 +4,12 @@ import { NextResponse, NextRequest } from 'next/server';
 export async function POST(request : NextRequest) {
     const { searchParams } = new URL(request.url)
     const api_token = process.env.NEXT_PUBLIC_BLOCKSDK_TOKEN
-
+    const url = process.env.NEXT_PUBLIC_URL
+    const net = process.env.NEXT_PUBLIC_NET
     const payload = await request.json()
     const name = payload.get('name')
 
-    const res = await fetch(`https://testnet-api.blocksdk.com/v3/eth/address?api_token=` + api_token, {
+    const res = await fetch(url + net + `/address?api_token=` + api_token, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
