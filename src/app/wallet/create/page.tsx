@@ -22,7 +22,7 @@ export default function Page() {
                 method: 'POST',
             }).then(response=>response.json()).then(data=>setData(data.data))
 
-        } catch (error) {
+        } catch (error : any) {
             // Capture the error message to display to the user
             setError(error.message)
             console.error(error)
@@ -38,12 +38,12 @@ export default function Page() {
                 <label htmlFor="Api Token">Api Token</label>
                 <input className="border-2 border-gray-200  p-2"
                        type="text" name="api_token" onChange={() => {
-                    setBody({ ...body, api_token: event.target.value });
+                    setBody({ ...body });
                 }}></input>
                 <label htmlFor="Wallet Name">Wallet Name</label>
                 <input className="border-2 border-gray-200  p-2"
                        type="text" name="name" onChange={() => {
-                    setBody({ ...body, name: event.target.value });
+                    setBody({ ...body });
                 }}></input>
                 <button  className="bg-black text-white text-sm font-medium p-2 rounded "
                          type="submit" disabled={isLoading}>

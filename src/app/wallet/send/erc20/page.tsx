@@ -26,7 +26,7 @@ export default function Page() {
                 method: 'POST',
             }).then(response=>response.json()).then(data=>setData(data.data))
 
-        } catch (error) {
+        } catch (error : any) {
             // Capture the error message to display to the user
             setError(error.message)
             console.error(error)
@@ -42,32 +42,32 @@ export default function Page() {
                 <label htmlFor="Api Token">Api Token</label>
                 <input className="border-2 border-gray-200  p-2"
                        type="text" name="api_token" onChange={() => {
-                    setBody({ ...body, api_token: event.target.value });
+                    setBody({ ...body });
                 }}></input>
                 <label htmlFor="Private Key">Private Key</label>
                 <input className="border-2 border-gray-200  p-2"
                        type="text" name="private_key" onChange={() => {
-                    setBody({ ...body, private_key: event.target.value });
+                    setBody({ ...body });
                 }}></input>
                 <label htmlFor="Contract Address">Contract Address</label>
                 <input className="border-2 border-gray-200  p-2"
                        type="text" name="contract" onChange={() => {
-                    setBody({ ...body, contract: event.target.value });
+                    setBody({ ...body });
                 }}></input>
                 <label htmlFor="From">From</label>
                 <input className="border-2 border-gray-200  p-2"
                        type="text" name="from" onChange={() => {
-                    setBody({ ...body, from: event.target.value });
+                    setBody({ ...body });
                 }}></input>
                 <label htmlFor="To">To</label>
                 <input className="border-2 border-gray-200  p-2"
                        type="text" name="to" onChange={() => {
-                    setBody({ ...body, to: event.target.value });
+                    setBody({ ...body });
                 }}></input>
                 <label htmlFor="Amount">Amount</label>
                 <input className="border-2 border-gray-200  p-2"
                        type="number" name="amount" onChange={() => {
-                    setBody({ ...body, amount: event.target.value });
+                    setBody({ ...body });
                 }}></input>
                 <button  className="bg-black text-white text-sm font-medium p-2 rounded "
                          type="submit" disabled={isLoading}>

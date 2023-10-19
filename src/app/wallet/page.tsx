@@ -21,7 +21,7 @@ export default function Page() {
                 method: 'GET',
             }).then(response=>response.json()).then(data=>setData(data.data))
 
-        } catch (error) {
+        } catch (error : any) {
             // Capture the error message to display to the user
             setError(error.message)
             console.error(error)
@@ -37,7 +37,7 @@ export default function Page() {
                 <label htmlFor="Api Token">Api Token</label>
                 <input className="border-2 border-gray-200  p-2"
                        type="text" name="body" onChange={() => {
-                    setBody({ ...body, api_token: event.target.value });
+                    setBody({ ...body });
                 }}/>
                 <button  className="bg-black text-white text-sm font-medium p-2 rounded "
                          type="submit" disabled={isLoading}>
