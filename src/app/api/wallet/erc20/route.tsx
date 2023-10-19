@@ -3,7 +3,7 @@ import { NextResponse, NextRequest } from 'next/server';
 //지갑 erc20
 export async function GET(request : NextRequest) {
     const { searchParams } = new URL(request.url)
-    const api_token = searchParams.get('api_token')
+    const api_token = process.env.NEXT_PUBLIC_BLOCKSDK_TOKEN
     const address = searchParams.get('address')
 
     const res = await fetch(`https://testnet-api.blocksdk.com/v3/eth/token/` + address +`/all-balance?api_token=` + api_token, {
@@ -21,12 +21,14 @@ export async function GET(request : NextRequest) {
 //erc20 전송
 export async function POST(request : NextRequest) {
     const { searchParams } = new URL(request.url)
-    const api_token = searchParams.get('api_token')
-    const contract = searchParams.get('contract')
-    const from = searchParams.get('from')
-    const private_key = searchParams.get('private_key')
-    const to = searchParams.get('to')
-    const amount = searchParams.get('amount')
+    const api_token = process.env.NEXT_PUBLIC_BLOCKSDK_TOKEN
+
+    const payload = await request.json()
+    const contract = payload.get('contract')
+    const from = payload.get('from')
+    const private_key = payload.get('private_key')
+    const to = payload.get('to')
+    const amount = payload.get('amount')
 
     const res = await fetch(`https://testnet-api.blocksdk.com/v3/eth/token/`+ contract + from +`/transfer?api_token=` + api_token, {
         method: 'POST',

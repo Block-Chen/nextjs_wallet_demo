@@ -7,7 +7,6 @@ export default function Page() {
     const [error, setError] = useState<string | null>(null)
     const [body, setBody] = useState({
         address : "",
-        api_token : "",
         nft : "",
     });
     const [data, setData] = useState()
@@ -20,11 +19,11 @@ export default function Page() {
         try {
             const formData = new FormData(event.currentTarget)
             if (body.nft=='erc721'){
-                const response = await fetch('/api/wallet/erc721?api_token=' + body.api_token + '&address=' + body.address , {
+                const response = await fetch('/api/wallet/erc721?&address=' + body.address , {
                     method: 'GET',
                 }).then(response=>response.json()).then(data=>setData(data.data))
             }else {
-                const response = await fetch('/api/wallet/erc1155?api_token=' + body.api_token + '&address=' + body.address , {
+                const response = await fetch('/api/wallet/erc1155?&address=' + body.address , {
                     method: 'GET',
                 }).then(response=>response.json()).then(data=>setData(data.data))
             }
@@ -51,11 +50,6 @@ export default function Page() {
                     <option value="erc721">erc721</option>
                     <option value="erc1155">erc1155</option>
                 </select>
-                <label htmlFor="Api Token">Api Token</label>
-                <input className="border-2 border-gray-200  p-2"
-                       type="text" name="api_token" onChange={() => {
-                    setBody({ ...body });
-                }}></input>
                 <label htmlFor="Wallet Address">Wallet Address</label>
                 <input className="border-2 border-gray-200  p-2"
                        type="text" name="address" onChange={() => {

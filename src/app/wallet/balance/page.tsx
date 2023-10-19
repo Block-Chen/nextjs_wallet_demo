@@ -7,7 +7,6 @@ export default function Page() {
     const [error, setError] = useState<string | null>(null)
     const [body, setBody] = useState({
         address : "",
-        api_token : "",
     });
     const [data, setData] = useState()
 
@@ -18,7 +17,7 @@ export default function Page() {
 
         try {
             const formData = new FormData(event.currentTarget)
-            const response = await fetch('/api/wallet/balance?api_token=' + body.api_token + '&address=' + body.address , {
+            const response = await fetch('/api/wallet/balance?&address=' + body.address , {
                 method: 'GET',
             }).then(response=>response.json()).then(data=>setData(data.data))
 
@@ -35,11 +34,6 @@ export default function Page() {
         <div>
             {error && <div style={{ color: 'red' }}>{error}</div>}
             <form onSubmit={onSubmit} className="w-1/3 justify-center border-2 flex flex-col gap-4 m-4 p-2">
-                <label htmlFor="Api Token">Api Token</label>
-                <input className="border-2 border-gray-200  p-2"
-                       type="text" name="api_token" onChange={() => {
-                    setBody({ ...body });
-                }}></input>
                 <label htmlFor="Wallet Address">Wallet Address</label>
                 <input className="border-2 border-gray-200  p-2"
                        type="text" name="address" onChange={() => {

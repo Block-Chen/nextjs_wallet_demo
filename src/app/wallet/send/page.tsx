@@ -6,7 +6,6 @@ export default function Page() {
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [error, setError] = useState<string | null>(null)
     const [body, setBody] = useState({
-        api_token : "",
         from : "",
         private_key : "",
         to : "",
@@ -21,8 +20,14 @@ export default function Page() {
 
         try {
             const formData = new FormData(event.currentTarget)
-            const response = await fetch('/api/wallet/balance?api_token=' + body.api_token + '&from=' + body.from + '&to=' + body.to + '&private_key=' + body.private_key + '&amount=' + body.amount , {
+            const response = await fetch('/api/wallet/balance' , {
                 method: 'POST',
+                body: JSON.stringify({
+                    from : body.from,
+                    private_key : body.private_key,
+                    to : body.to,
+                    amount : body.amount,
+                }),
             }).then(response=>response.json()).then(data=>setData(data.data))
 
         } catch (error : any) {
@@ -38,11 +43,6 @@ export default function Page() {
         <div>
             {error && <div style={{ color: 'red' }}>{error}</div>}
             <form onSubmit={onSubmit} className="w-1/3 justify-center border-2 flex flex-col gap-4 m-4 p-2">
-                <label htmlFor="Api Token">Api Token</label>
-                <input className="border-2 border-gray-200  p-2"
-                       type="text" name="api_token" onChange={() => {
-                    setBody({ ...body });
-                }}></input>
                 <label htmlFor="Private Key">Private Key</label>
                 <input className="border-2 border-gray-200  p-2"
                        type="text" name="private_key" onChange={() => {
