@@ -5,9 +5,10 @@
 
 ### 1. 시작하기
 1. 터미널 실행
-2. 프로젝트 디렉토리로 이동하여 `npm install` 실행
-3. 빌드 `next build` , 시작 `next start`.
-4. `next dev`로 개발모드로 진행 가능
+2. `git clone https://github.com/Block-Chen/nextjs_wallet_demo.git` 실행하여 저장소 복제
+3. 프로젝트 디렉토리로 이동하여 `npm install` 실행
+4. 빌드 `next build` , 시작 `next start`.
+5. `next dev`로 개발모드로 진행 가능
 
 ## 디렉토리 구조
 
