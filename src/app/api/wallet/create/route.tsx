@@ -4,7 +4,7 @@ import { NextResponse, NextRequest } from 'next/server';
 export async function POST(request : NextRequest) {
     const { searchParams } = new URL(request.url)
     const api_token = process.env.NEXT_PUBLIC_BLOCKSDK_TOKEN
-    const url = process.env.NEXT_PUBLIC_URL
+    const url = process.env.NEXT_PUBLIC_URL as string
     const net = process.env.NEXT_PUBLIC_NET
     const payload = await request.json()
     const name = payload.get('name')
