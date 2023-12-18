@@ -8,12 +8,10 @@ export async function GET(request : NextRequest) {
     const net = process.env.NEXT_PUBLIC_NET
 
     const res = await fetch(url + net + `/address?api_token=` + api_token, {
+        method: 'GET',
         headers: {
             'Content-Type': 'application/json',
         },
-        /*query:{
-            api_token : 'jijlGRjpSm96WqpiUNt3J5C6ZHluVSpV7lgpOL7Q',
-        },*/
     });
     const data = await res.json();
 
