@@ -27,21 +27,16 @@ export async function POST(request : NextRequest) {
     const url = process.env.NEXT_PUBLIC_URL as string
     const net = process.env.NEXT_PUBLIC_NET
     const payload = await request.json()
-    const contract = payload.get('contract')
-    const from = payload.get('from')
-    const private_key = payload.get('private_key')
-    const to = payload.get('to')
-    const amount = payload.get('amount')
 
-    const res = await fetch(url + net + `/token/`+ contract + from +`/transfer?api_token=` + api_token, {
+    const res = await fetch(url + net + `/token/`+ payload.contract + payload.from +`/transfer?api_token=` + api_token, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            private_key: private_key,
-            to : to,
-            amount : amount,
+            private_key: payload.private_key,
+            to : payload.to,
+            amount : payload.amount,
         }),
     })
 

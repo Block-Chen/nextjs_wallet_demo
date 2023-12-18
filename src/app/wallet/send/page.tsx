@@ -45,23 +45,23 @@ export default function Page() {
             <form onSubmit={onSubmit} className="w-1/3 justify-center border-2 flex flex-col gap-4 m-4 p-2">
                 <label htmlFor="Private Key">Private Key</label>
                 <input className="border-2 border-gray-200  p-2"
-                       type="text" name="private_key" onChange={() => {
-                    setBody({ ...body });
+                       type="text" name="private_key" value={body.private_key} onChange={(e) => {
+                    setBody({ ...body,private_key: e.target.value });
                 }}></input>
                 <label htmlFor="From">From</label>
                 <input className="border-2 border-gray-200  p-2"
-                       type="text" name="from" onChange={() => {
-                    setBody({ ...body });
+                       type="text" name="from" value={body.from} onChange={(e) => {
+                    setBody({ ...body,from: e.target.value });
                 }}></input>
                 <label htmlFor="To">To</label>
                 <input className="border-2 border-gray-200  p-2"
-                       type="text" name="to" onChange={() => {
-                    setBody({ ...body });
+                       type="text" name="to" value={body.to} onChange={(e) => {
+                    setBody({ ...body,to: e.target.value });
                 }}></input>
                 <label htmlFor="Amount">Amount</label>
                 <input className="border-2 border-gray-200  p-2"
-                       type="number" name="amount" onChange={() => {
-                    setBody({ ...body });
+                       type="number" name="amount" value={body.amount} onChange={(e) => {
+                    setBody({ ...body,amount: e.target.value });
                 }}></input>
                 <button  className="bg-black text-white text-sm font-medium p-2 rounded "
                          type="submit" disabled={isLoading}>

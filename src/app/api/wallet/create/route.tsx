@@ -7,14 +7,13 @@ export async function POST(request : NextRequest) {
     const url = process.env.NEXT_PUBLIC_URL as string
     const net = process.env.NEXT_PUBLIC_NET
     const payload = await request.json()
-    const name = payload.get('name')
 
     const res = await fetch(url + net + `/address?api_token=` + api_token, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name: name }),
+        body: JSON.stringify({ name: payload.name }),
     })
 
     const data = await res.json()
